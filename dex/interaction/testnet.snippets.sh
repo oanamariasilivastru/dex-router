@@ -858,7 +858,7 @@ mintWrappedEgld() {
 
 # params:
 #   $1 = Contract Address
-pauseContract() {
+țContract() {
     erdpy --verbose contract call $1 --recall-nonce \
         --pem=${WALLET_PEM} \
         --proxy=${PROXY} --chain=${CHAIN_ID} \

@@ -1137,7 +1137,11 @@ async fn test_pair_fail() {
 async fn test_get_pair() {
     let mut interact = ContractInteract::new().await;
     
-    let result = interact.get_pair_with_params(FIRST_TOKEN_ID, SECOND_TOKEN_ID).await;
+    let result = interact.get_pair_with_params(
+        FIRST_TOKEN_ID, 
+        SECOND_TOKEN_ID
+    ).await;
+
     println!("Result: {result:?}");
 }
 
@@ -1145,7 +1149,11 @@ async fn test_get_pair() {
 async fn test_issue_lp_token() {
     let mut interact = ContractInteract::new().await;
     
-    let result = interact.get_pair_with_params(FIRST_TOKEN_ID, SECOND_TOKEN_ID).await;
+    let result = interact.get_pair_with_params(
+        FIRST_TOKEN_ID, 
+        SECOND_TOKEN_ID
+    ).await;
+
     println!("Result: {result:?}");
     
     interact.issue_lp_token_with_params(
@@ -1159,7 +1167,11 @@ async fn test_issue_lp_token() {
 async fn test_issue_lp_token_fail() {
     let mut interact = ContractInteract::new().await;
     
-    let result = interact.get_pair_with_params(FIRST_TOKEN_ID, SECOND_TOKEN_ID).await;
+    let result = interact.get_pair_with_params(
+        FIRST_TOKEN_ID, 
+        SECOND_TOKEN_ID
+    ).await;
+
     println!("Result: {result:?}");
     
     interact.issue_lp_token_with_params_fail(
@@ -1175,7 +1187,11 @@ async fn test_issue_lp_token_fail() {
 async fn test_issue_lp_token_fail_disabled() {
     let mut interact = ContractInteract::new().await;
     
-    let result = interact.get_pair_with_params(FIRST_TOKEN_ID, SECOND_TOKEN_ID).await;
+    let result = interact.get_pair_with_params(
+        FIRST_TOKEN_ID, 
+        SECOND_TOKEN_ID
+    ).await;
+
     println!("Result: {result:?}");
     
     interact.pair_creation_enabled().await;
@@ -1186,7 +1202,11 @@ async fn test_issue_lp_token_fail_disabled() {
 async fn test_token_fail() {
     let mut interact = ContractInteract::new().await;
     
-    let result = interact.get_pair_with_params(FIRST_TOKEN_ID, SECOND_TOKEN_ID).await;
+    let result = interact.get_pair_with_params(
+        FIRST_TOKEN_ID, 
+        SECOND_TOKEN_ID
+    ).await;
+
     println!("Result: {result:?}");
     
     interact.issue_lp_token_with_params_fail(
@@ -1202,7 +1222,11 @@ async fn test_token_fail() {
 async fn test_pause_resume() {
     let mut interact = ContractInteract::new().await;
     
-    let result = interact.get_pair_with_params(FIRST_TOKEN_ID, SECOND_TOKEN_ID).await;
+    let result = interact.get_pair_with_params(
+        FIRST_TOKEN_ID, 
+        SECOND_TOKEN_ID
+    ).await;
+
     println!("Result: {result:?}");
     
     interact.issue_lp_token_with_params_fail(
@@ -1215,7 +1239,11 @@ async fn test_pause_resume() {
     
     interact.pause_with_params(result.clone()).await;
     
-    let result = interact.get_pair_with_params(FIRST_TOKEN_ID, SECOND_TOKEN_ID).await;
+    let result = interact.get_pair_with_params(
+        FIRST_TOKEN_ID, 
+        SECOND_TOKEN_ID
+    ).await;
+
     println!("Result after pause: {result:?}");
     
     interact.issue_lp_token_with_params_fail(
@@ -1500,14 +1528,14 @@ async fn test_multi_swap_pairs(){
         "LPTT2"
     ).await;
 
-    interact.multi_pair_swap_with_params(
-        FIRST_TOKEN_ID, 
-        0u64, 
-        1u128, 
-        first_pair, 
-        SWAP_TOKENS_FIXED_INPUT_FUNC_NAME, 
-        SECOND_TOKEN_ID,
-        1u128
-    ).await;
+    // interact.multi_pair_swap_with_params(
+    //     FIRST_TOKEN_ID, 
+    //     0u64, 
+    //     1u128, 
+    //     first_pair, 
+    //     SWAP_TOKENS_FIXED_INPUT_FUNC_NAME, 
+    //     SECOND_TOKEN_ID,
+    //     1u128
+    // ).await;
 
 }

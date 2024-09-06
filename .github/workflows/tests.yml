@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - potlock-sc
+  pull_request:
+
+permissions:
+  checks: write
+  pull-requests: write
+
+jobs:
+  contracts:
+    name: Contracts
+    uses: multiversx/mx-sc-actions/.github/workflows/contracts.yml@v3.2.0
+    with:
+      rust-toolchain: stable
+      enable-contracts-size-report: false
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+
+  summarize-test-results:
+    name: Summarize Test Results
+    runs-on: ubuntu-latest
+    needs: contracts
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Capture Test Output
+        run: |
+          mkdir -p test-results
+          cargo test -- --nocapture > test-results/output.txt
+
+      - name: Generate Summary
+        run: |
+          echo "## Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "| Test Name | Result |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|--------|" >> $GITHUB_STEP_SUMMARY
+          grep "^test" test-results/output.txt | awk '{print "| " $2 " | " ($3=="ok" ? "passed" : "**FAILED**") " |"}' >> $GITHUB_STEP_SUMMARY
+
